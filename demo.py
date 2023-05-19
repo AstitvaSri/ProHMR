@@ -89,5 +89,5 @@ for i, batch in enumerate(tqdm(dataloader)):
             img_fn, _ = os.path.splitext(os.path.split(batch['imgname'][n])[1])
             fitting_img = renderer(opt_out['vertices'][n].detach().cpu().numpy(),
                                    opt_out['camera_translation'][n].detach().cpu().numpy(),
-                                   batch['img'][n], imgname=batch['imgname'][n], full_frame=args.full_frame)
+                                   batch['img'][n], imgname=batch['imgname'][n], save_mesh=True, full_frame=args.full_frame)
             cv2.imwrite(os.path.join(args.out_folder, f'{img_fn}_fitting.{args.out_format}'), 255*fitting_img[:, :, ::-1])
