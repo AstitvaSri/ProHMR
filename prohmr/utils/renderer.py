@@ -96,7 +96,7 @@ class Renderer:
         
         if imgname is not None and save_mesh==True:
           os.makedirs('../SMPL_meshes', exist_ok=True)
-          save_meshname = '../SMPL_meshes/' + imgname.split('/')[-1][:-4] + '.obj'
+          save_meshname = '../SMPL_meshes/' + imgname.split('/')[-1][:-4] + '_fitting.obj'
           print(save_meshname)
           mesh.export(save_meshname)
 
