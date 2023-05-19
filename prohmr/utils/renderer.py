@@ -95,8 +95,8 @@ class Renderer:
         mesh = trimesh.Trimesh(vertices.copy(), self.faces.copy())
         
         if imgname is not None and save_mesh==True:
-          os.makedirs('../SMPL_meshes', exist_ok=True)
-          save_meshname = '../SMPL_meshes/' + imgname.split('/')[-1][:-4] + '_fitting.obj'
+          os.makedirs('../output_smpl_meshes', exist_ok=True)
+          save_meshname = '../output_smpl_meshes/' + imgname.split('/')[-1][:-4] + '_fitting.obj'
           print(save_meshname)
           mesh.export(save_meshname)
 
