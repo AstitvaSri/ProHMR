@@ -63,6 +63,7 @@ class Renderer:
                 camera_translation: np.array,
                 image: torch.Tensor,
                 full_frame: bool = False,
+                save_mesh: bool = False,
                 imgname: Optional[str] = None) -> np.array:
         """
         Render meshes on input image
@@ -92,6 +93,13 @@ class Renderer:
         camera_translation[0] *= -1.
 
         mesh = trimesh.Trimesh(vertices.copy(), self.faces.copy())
+        
+        if imgname is not None and save_mesh==True:
+          os.makedirs('../SMPL_meshes', exist_ok=True)
+          save_meshname = '../SMPL_meshes/' + imgname.split('/')[-1][:-4] + '.obj'
+          print(save_meshname)
+          mesh.export(save_meshname)
+
         rot = trimesh.transformations.rotation_matrix(
             np.radians(180), [1, 0, 0])
         mesh.apply_transform(rot)
